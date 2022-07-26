@@ -31,5 +31,13 @@ urlpatterns = [
         redirect_authenticated_user=True),
         name='login'),
     path('home/', blog.views.home, name='home'),
+    path('ticket/', blog.views.ticket_upload, name='ticket'),
+    path('review/', blog.views.ticket_review_upload, name='review'),
     path('logout/', LogoutView.as_view(template_name='authentication/login.html'), name='logout'),
+    path('signup/', authentication.views.signup_page, name='signup'),
+    path('blog/<int:ticket_id>', blog.views.view_ticket, name='view_ticket'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root = settings.MEDIA_ROOT)

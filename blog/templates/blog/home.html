@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
     <p>Vous êtes connecté !</p>
+    <h2>Flux</h2>
+    <div class="grid-container">
+        {% for ticket in tickets %}
+            <div class="post">
+                <a href="{% url 'view_ticket' ticket.id %}">
+                    <h4>Demande de critique : {{ ticket.title }}</h4>
+                    <img src="{{ ticket.image.url }}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <button ><a href="{% url 'ticket' %}">Demander une critique</a></button> <button ><a href="{% url 'review' %}">Créer une critique</a></button>
+
     <h2></h2>
         <p></p>
 

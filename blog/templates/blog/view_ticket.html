@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>{{ ticket.user }} a demandé une critique:</p><p>{{ ticket.time_created }}</p>
+    <h4>{{ ticket.title }}</h4>
+    <p>{{ ticket.description }}</p>
+        <img src="{{ ticket.image.url }}">
+
+        <button type="submit" >Publier</button>
+    <h2></h2>
+        <p></p>
+
+{% endblock content %}
