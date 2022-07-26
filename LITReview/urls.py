@@ -36,6 +36,9 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='authentication/login.html'), name='logout'),
     path('signup/', authentication.views.signup_page, name='signup'),
     path('blog/<int:ticket_id>', blog.views.view_ticket, name='view_ticket'),
+    path('blog/<int:ticket_id>/edit', blog.views.edit_ticket, name='edit_ticket'),
+    path('home/', blog.views.edit_ticket, name='delete_ticket'),
+    path('follow-users/', blog.views.follow_users, name='follow_users'),
 ]
 
 if settings.DEBUG:

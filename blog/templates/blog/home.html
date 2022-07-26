@@ -7,8 +7,9 @@
             <div class="post">
                 <a href="{% url 'view_ticket' ticket.id %}">
                     <h4>Demande de critique : {{ ticket.title }}</h4>
-                    <img src="{{ ticket.image.url }}">
                 </a>
+                <p><a href="{% url 'edit_ticket' ticket.id %}">Modifier</a></p>
+                <p><a href="{% url 'edit_ticket' ticket.id %}">Supprimer</a></p>
             </div>
         {% endfor %}
     </div>

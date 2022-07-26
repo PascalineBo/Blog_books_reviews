@@ -1,10 +1,11 @@
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.conf import settings
 
 from . import forms
 
-from django.views.generic import View
+
 
 def signup_page(request):
     form = forms.SignupForm()
