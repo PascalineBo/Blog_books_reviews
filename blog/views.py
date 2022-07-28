@@ -64,10 +64,15 @@ def edit_ticket(request, ticket_id):
 
 @login_required
 def follow_users(request):
-    form = forms.FollowUsersForm(instance=request.user)
+    form = forms.UserFollowsForm(instance=request.user)
     if request.method == 'POST':
-        form = forms.FollowUsersForm(request.POST, instance=request.user)
+        form = forms.UserFollowsForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('home')
     return render(request, 'blog/follow_users_form.html', context={'form': form})
+
+@login_required
+def view_userfollows(request):
+    user_follows_list = models.UserFollows.objects.all()
+    return render(request, 'blog/view_follow_users.html',context={'user_follows_list': user_follows_list})

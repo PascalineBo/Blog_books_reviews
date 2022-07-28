@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>{{ ticket.user }} a demandé une critique:</p><p>{{ ticket.time_created }}</p>
-    <h4>{{ ticket.title }}</h4>
-    <p>{{ ticket.description }}</p>
-    {% if ticket.image %}
-        <img src="{{ ticket.image.url }}">
-    {% endif %}
-        <button type="submit" >Publier</button>
-        <p><a href="{% url 'edit_ticket' ticket.id %}">Modifier</a></p>
-        <p><a href="{% url 'edit_ticket' ticket.id %}">Supprimer</a></p>
-        <button type="submit" ><a href="{% url 'home' %}">Retourner</a></button>
-
+        <div class="container border border-dark">
+            <div class="row">
+                <div class="col-5 text-left">
+                <p>{{ ticket.user }} a demandé une critique:</p>
+                </div>
+                <div class="col-2 text-right">
+                    <p>{{ ticket.time_created }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="container border border-dark">
+            <h4>Titre :{{ ticket.title }}</h4>
+        </div>
+        <div class="container border border-dark">
+            <p>{{ ticket.description }}</p>
+            {% if ticket.image %}
+                <img src="{{ ticket.image.url }}">
+            {% endif %}
+            <button type="submit" >Publier</button>
+            <div class="row">
+                <button><a href="{% url 'edit_ticket' ticket.id %}">
+                    Modifier</a></button>
+                <button><a href="{% url 'edit_ticket' ticket.id %}">
+                    Supprimer</a></button>
+            </div>
+            <button type="submit" ><a href="{% url 'home' %}">
+                Retourner</a></button>
+        </div>
 {% endblock content %}

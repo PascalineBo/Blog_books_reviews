@@ -1,19 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Suivre des utilisateurs</h2>
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Confirmer</button>
-    </form>
-
-<p><a href="{% url 'followers' %}">Voir les abonnements</a></p>
 
 <!--à retravailler-->
     {% for user_follows in user_follows_list %}
         <!--{% if user_follows.user == settings.AUTH_USER_MODEL %}-->
             <div class="followers">
-                    <h4>Abonnements : {{ user_follows.followed_user }}</h4>
+                    <h4>Abonnements: </h4>
+                    <p>{{ user_follows.followed_user.type }}</p>
             </div>
         <!--{% endif %}-->
         <!--{% if user_follows.followed_user == settings.AUTH_USER_MODEL %}-->
