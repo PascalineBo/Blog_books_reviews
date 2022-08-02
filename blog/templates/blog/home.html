@@ -2,20 +2,62 @@
 {% block content %}
     <p>Vous êtes connecté !</p>
     <h2>Flux</h2>
-    <div class="grid-container">
-        {% for ticket in tickets %}
-            <div class="post">
+<li class="list-inline-item"><button><a href="{% url 'ticket' %}">Demander une critique</a></button></li>
+<li class="list-inline-item"><button><a href="{% url 'review' %}">Créer une critique</a></button></li>
+    <div class="grid-container border border-dark">
+            {% for ticket in tickets %}
+            <div class="container border border-dark">
                 <a href="{% url 'view_ticket' ticket.id %}">
-                    <h4>Demande de critique : {{ ticket.title }}</h4>
+                    <div class="row">
+                        <div class="col-5 text-left">
+                        <p>{{ ticket.user }} a demandé une critique:</p>
                 </a>
-                <button><a href="{% url 'edit_ticket' ticket.id %}">Modifier</a></button>
-                <button><a href="{% url 'edit_ticket' ticket.id %}">Supprimer</a></button>
+                        </div>
+                        <div class="col-2 text-right">
+                            <p>{{ ticket.time_created }}</p>
+                        </div>
+                    </div>
+                <h4>Titre :{{ ticket.title }}</h4>
+                {% if ticket.image %}
+                    <img src="{{ ticket.image.url }}">
+                {% endif %}
+                    {% if review.ticket_id_set %}
+                    <span>il y a déjà une critique</span>
+                    {% else %}
+                    <a href="{% url 'review' %}">
+                        <button>Créer une critique</button>
+                    </a>
+                    {% endif %}
             </div>
-        {% endfor %}
+            {% endfor %}
+
+            {% for review in reviews %}
+            <div class="container border border-dark">
+
+                    <div class="row">
+                        <div class="col-5 text-left">
+                            <a href="{% url 'view_review' review.id %}">
+                                <span>{{review.user}} posted a review </span>
+                            </a>
+                        </div>
+                        <div class="col-2 text-right">
+                            <span>{{review.time_created}}</span>
+                        </div>
+                    </div>
+                    <h5>{{ review.headline }} - {{ review.rating }} étoiles</h5>
+                    <p>{{ review.content }}</p>
+                    <p>{{ review.body }}</p>
+                    <p>{{ review.ticket}}</p>
+                    <div class="container border border-dark">
+                    <h3>Demande de critique : {{ review.ticket.title }}</h3>
+                        <p>de: {{ review.ticket.user }} </p>
+                    {% if review.ticket.image %}
+                    <img src="{{ review.ticket.image.url }}">
+                    {% endif %}
+                    </div>
+
+            </div>
+            {% endfor %}
+
     </div>
-    <button ><a href="{% url 'ticket' %}">Demander une critique</a></button> <button ><a href="{% url 'review' %}">Créer une critique</a></button>
-
-    <h2></h2>
-        <p></p>
-
 {% endblock content %}

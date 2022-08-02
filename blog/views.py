@@ -6,7 +6,9 @@ from . import forms, models
 @login_required
 def home(request):
     tickets = models.Ticket.objects.all()
-    return render(request, 'blog/home.html',context={'tickets': tickets})
+    reviews = models.Review.objects.all()
+    return render(request, 'blog/home.html',context={'tickets': tickets,
+                                                     'reviews': reviews})
 
 @login_required
 def ticket_upload(request):
@@ -42,6 +44,11 @@ def view_ticket(request, ticket_id):
     return render(request, 'blog/view_ticket.html', {'ticket': ticket})
 
 @login_required
+def view_review(request, review_id):
+    review = get_object_or_404(models.Review, id=review_id)
+    return render(request, 'blog/view_review.html', {'review': review})
+
+@login_required
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     edit_form = forms.TicketForm(instance=ticket)
@@ -66,13 +73,19 @@ def edit_ticket(request, ticket_id):
 def follow_users(request):
     form = forms.UserFollowsForm(instance=request.user)
     if request.method == 'POST':
-        form = forms.UserFollowsForm(request.POST, instance=request.user)
+        form = forms.UserFollowsForm(request.POST, request.FILES)
         if form.is_valid():
+            """userfollows = form.save(commit=False)
+            # set the uploader to the user before saving the model
+            userfollows.user = request.user
+            # now we can save
+            userfollows.save()"""
             form.save()
             return redirect('home')
-    return render(request, 'blog/follow_users_form.html', context={'form': form})
+    return render(request, 'blog/follow_users_form.html',
+                  context={'form': form})
 
 @login_required
 def view_userfollows(request):
     user_follows_list = models.UserFollows.objects.all()
-    return render(request, 'blog/view_follow_users.html',context={'user_follows_list': user_follows_list})
+    return render(request, 'blog/follow_users_form.html',context={'user_follows_list': user_follows_list})

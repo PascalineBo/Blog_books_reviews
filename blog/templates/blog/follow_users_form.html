@@ -13,12 +13,12 @@
     {% for user_follows in user_follows_list %}
         <!--{% if user_follows.user == settings.AUTH_USER_MODEL %}-->
             <div class="followers">
-                    <h4>Abonnements : {{ user_follows.followed_user }}</h4>
+                    <th>Abonnements : {{ user_follows_id }}</th>
             </div>
         <!--{% endif %}-->
         <!--{% if user_follows.followed_user == settings.AUTH_USER_MODEL %}-->
             <div class="followers">
-                    <h4>Abonnés : {{ user_follows.user }}</h4>
+                    <h4>Abonnés : </h4>
             </div>
         <!--{% endif %}-->
     {% endfor %}

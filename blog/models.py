@@ -1,3 +1,4 @@
+from django import forms
 from django.db import models
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -21,12 +22,16 @@ class Ticket(models.Model):  # ticket model
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.resize_image()
+        if self.image:
+            self.resize_image()
 
-class Review(models.Model):  # ticket model
-    ticket = models.ForeignKey(to=Ticket,on_delete=models.CASCADE)
-    rating = models.PositiveSmallIntegerField(validators=[ MinValueValidator(0),
-                                                           MaxValueValidator(5)])
+    def __str__(self):
+        return self.title
+
+class Review(models.Model):  # review model
+    ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE, null=True)
+    rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(0),
+                                                          MaxValueValidator(5)])
     content = models.CharField(max_length=5000)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     headline = models.CharField(max_length=128)
@@ -45,3 +50,6 @@ class UserFollows(models.Model):
         # ensures we don't get multiple UserFollows instances
         # for unique user-user_followed pairs
         unique_together = ['user', 'followed_user',]
+
+    def __str__(self):
+        return self.followed_user.name
