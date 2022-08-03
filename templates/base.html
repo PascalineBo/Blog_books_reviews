@@ -1,27 +1,24 @@
 <html>
-    <div class="container border border-dark">
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <link rel="stylesheet"
-                  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-            <title>LITReview</title>
-        </head>
-        <header class="row">
-            <h1 class="col" class = "navbar-brand">LITReview</h1>
-            {% if user.is_authenticated %}
+    <head >
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title>LITReview</title>
+    </head>
+        <header class="row border border-dark">
+                <h1 class="col navbar-brand text-center">LITReview</h1>
+                {% if user.is_authenticated %}
                 <p class="col-3">Vous êtes connecté en tant que {{ request.user }}.</p>
                 <nav class="navbar-expand" class="ml-auto">
-                    <a href="{% url 'home' %}">Flux</a>
-                    <a href="">Posts</a>
-                    <a href="{% url 'follow_users' %}">Abonnements</a>
-                    <a href="{% url 'logout' %}">Se déconnecter</a>
-                    </nav>
-            {% endif %}
+                    <a href="{% url 'home' %}" class="p-3">Flux</a>
+                    <a href="" class="p-3">Posts</a>
+                    <a href="{% url 'follow_users' %}" class="p-3">Abonnements</a>
+                    <a href="{% url 'logout' %}" class="p-3">Se déconnecter</a>
+                </nav>
+                {% endif %}
         </header>
-    </div>
-    <div class="container border border-dark">
-        <body>
+        <body class="border border-dark w-100 p-3">
             {% block content %}{% endblock content %}
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -34,9 +31,5 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
                 integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
             </script>
-    </body>
-</html>
-
         </body>
-    </div>
 </html>
