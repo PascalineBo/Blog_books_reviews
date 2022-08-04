@@ -14,6 +14,7 @@ class DeleteTicketForm(forms.Form):
 
 class TicketReviewForm(forms.ModelForm):
     """ticket = forms.ModelMultipleChoiceField(queryset=models.Ticket.objects.all())"""
+    edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     RATING_CHOICES = [
         (0, "Zero"), (1, "*"), (2, "**"), (3, "***"), (4, "****"), (5, "*****")
     ]

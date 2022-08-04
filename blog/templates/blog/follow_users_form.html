@@ -1,27 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Suivre des utilisateurs</h2>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {{ form.as_p }}
         {% csrf_token %}
-        <button type="submit" >Confirmer</button>
+        <button type="submit" class = "m-3 btn btn-secondary btn-md">Confirmer</button>
     </form>
 
-<p><a href="{% url 'followers' %}">Voir les abonnements</a></p>
+<thead>Abonnements:</thead>
 
-<!--à retravailler-->
-    {% for user_follows in user_follows_list %}
-        <!--{% if user_follows.user == settings.AUTH_USER_MODEL %}-->
-            <div class="followers">
-                    <th>Abonnements : {{ user_follows_id }}</th>
-            </div>
-        <!--{% endif %}-->
-        <!--{% if user_follows.followed_user == settings.AUTH_USER_MODEL %}-->
-            <div class="followers">
-                    <h4>Abonnés : </h4>
-            </div>
-        <!--{% endif %}-->
-    {% endfor %}
-
+    <!--à retravailler-->
+    <table class="table">
+        {% for followed_user in followed_users %}
+        <tbody>
+            <td class="border border-dark">{{followed_user.followed_user}}</td>
+        </tbody>
+        {% endfor %}
+    </table>
+    <thead>Abonnés:</thead>
+    <table class="table">
+        {% for follower in followers %}
+        <tbody>
+            <td class="border border-dark">Abonnés : {{follower.user}} </td>
+        </tbody>
+        {% endfor %}
+    </table>
 
 {% endblock content %}

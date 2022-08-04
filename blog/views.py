@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from . import forms, models
+from django.db import IntegrityError
+from django.contrib import messages
 
 
 @login_required
@@ -70,22 +72,52 @@ def edit_ticket(request, ticket_id):
     return render(request, 'blog/edit_ticket.html', context=context)
 
 @login_required
+def edit_review(request, review_id):
+    review = get_object_or_404(models.Review, id=review_id)
+    edit_form = forms.TicketReviewForm(instance=review)
+    delete_form = forms.DeleteTicketForm()
+    if request.method == 'POST':
+        if 'edit_review' in request.POST:
+            edit_form = forms.TicketReviewForm(request.POST, instance=review)
+            if edit_form.is_valid():
+                edit_form.save()
+                return redirect('home')
+        if 'delete_review' in request.POST:
+            delete_form = forms.DeleteTicketForm(request.POST, request.FILES)
+            if delete_form.is_valid():
+                review.delete()
+                return redirect('home')
+    context = {
+        'edit_form': edit_form,
+        'delete_form': delete_form,}
+    return render(request, 'blog/edit_review.html', context=context)
+
+
+@login_required
 def follow_users(request):
     form = forms.UserFollowsForm(instance=request.user)
     if request.method == 'POST':
         form = forms.UserFollowsForm(request.POST, request.FILES)
         if form.is_valid():
-            """userfollows = form.save(commit=False)
-            # set the uploader to the user before saving the model
-            userfollows.user = request.user
-            # now we can save
-            userfollows.save()"""
             form.save()
-            return redirect('home')
-    return render(request, 'blog/follow_users_form.html',
-                  context={'form': form})
+            try:
+                """userfollows = form.save(commit=False)
+                # set the uploader to the user before saving the model
+                userfollows.user = request.user
+                # now we can save
+                userfollows.save()"""
+                return redirect('home')
+            except IntegrityError:
+                error_message = f"<strong>vous suivez déjà " \
+                            f"{request.POST['followed_user']}.</strong> "
+                messages.add_message(request, messages.ERROR, message=error_message)
+    # display subscriptions
+    followed_users = models.UserFollows.objects.filter(user=request.user)
 
-@login_required
-def view_userfollows(request):
-    user_follows_list = models.UserFollows.objects.all()
-    return render(request, 'blog/follow_users_form.html',context={'user_follows_list': user_follows_list})
+    # display subscribers
+    followers = models.UserFollows.objects.filter(followed_user=request.user)
+
+    return render(request, 'blog/follow_users_form.html',
+                  context={'form': form,
+                           'followed_users': followed_users,
+                           'followers': followers})

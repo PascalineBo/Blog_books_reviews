@@ -2,14 +2,16 @@
 {% block content %}
     <div class="row">
         <div class="col"><p>Inscrivez-vous maintenant </p>
-            <button type="submit" ><a href="{% url 'signup' %}">S'inscrire</a></button>
+                <a href="{% url 'signup' %}" class = "btn btn-secondary btn-md">
+                    S'inscrire
+                </a>
         </div>
         <div class="col"><p>Connectez-vous</p>
             <form method="post">
                  {{ form.as_p }}
                  {% csrf_token %}
                 <div class="text-right">
-                    <button type="submit" >Se connecter</button>
+                    <button type="submit" class = "btn btn-secondary btn-md">Se connecter</button>
                 </div>
             </form>
         </div>

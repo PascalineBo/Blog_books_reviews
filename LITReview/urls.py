@@ -37,10 +37,11 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('blog/ticket/<int:ticket_id>', blog.views.view_ticket, name='view_ticket'),
     path('blog/review/<int:review_id>', blog.views.view_review, name='view_review'),
-    path('blog/<int:ticket_id>/edit', blog.views.edit_ticket, name='edit_ticket'),
+    path('blog/ticket/<int:ticket_id>/edit', blog.views.edit_ticket, name='edit_ticket'),
+    path('blog/review/<int:review_id>/edit', blog.views.edit_review, name='edit_review'),
     path('home/', blog.views.edit_ticket, name='delete_ticket'),
+    path('home/', blog.views.edit_review, name='delete_review'),
     path('follow-users/', blog.views.follow_users, name='follow_users'),
-    path('follow-users/', blog.views.view_userfollows, name='followers'),
 ]
 
 if settings.DEBUG:
