@@ -12,7 +12,7 @@
                 <p class="col-3">Vous êtes connecté en tant que {{ request.user }}.</p>
                 <nav class="navbar-expand" class="ml-auto">
                     <a href="{% url 'home' %}" class="p-3">Flux</a>
-                    <a href="" class="p-3">Posts</a>
+                    <a href="{% url 'posts' %}"  class="p-3">Posts</a>
                     <a href="{% url 'follow_users' %}" class="p-3">Abonnements</a>
                     <a href="{% url 'logout' %}" class="p-3">Se déconnecter</a>
                 </nav>

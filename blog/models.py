@@ -25,6 +25,14 @@ class Ticket(models.Model):  # ticket model
         if self.image:
             self.resize_image()
 
+    def review_exist(self):
+        review_list = []
+        reviews = models.Review.objects.all()
+        for review in reviews:
+            if review.ticket.id == self.id:
+                review_list.append(review.ticket.id)
+        return self.review_list
+
     def __str__(self):
         return self.title
 

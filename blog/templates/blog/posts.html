@@ -26,19 +26,19 @@
                 {% if ticket.image %}
                     <img src="{{ ticket.image.url }}">
                 {% endif %}
-                <p>{{ ticket.id }}</p>
-                {% if ticket.review_list|length == 0 %}
-                    <p>{{ ticket.review_list|length }}!</p>
-                    <div class="text-right">
-                        <a href="{% url 'review' %}" class="btn btn-secondary btn-sm">
-                            Créer une critique
-                        </a>
-                    </div>
-                    {% else %}
-                    <p>{{ ticket.review_list|length }}!</p>
-                    <span>il y a déjà une critique</span>
-                {% endif %}
-
+                <div class="row">
+                    <a href="{% url 'edit_ticket' ticket.id %}"
+                    class = "m-3 btn btn-secondary btn-md">
+                    Modifier
+                    </a>
+                    <a href="{% url 'edit_ticket' ticket.id %}"
+                       class = "m-3 btn btn-secondary btn-md">
+                    Supprimer
+                    </a>
+                    <a href="{% url 'home' %}" class = "m-3 btn btn-secondary btn-md">
+                    Retourner
+                    </a>
+                </div>
             </div>
     {% endfor %}
 
@@ -64,6 +64,17 @@
                     {% if review.ticket.image %}
                     <img src="{{ review.ticket.image.url }}">
                     {% endif %}
+                </div>
+                <div class="row">
+               <a href="{% url 'edit_review' review.id %}" class = "m-3 btn btn-secondary btn-md">
+                    Modifier
+               </a>
+               <a href="{% url 'edit_review' review.id %}" class = "m-3 btn btn-secondary btn-md">
+                    Supprimer
+               </a>
+                <a href="{% url 'home' %}" class = "m-3 btn btn-secondary btn-md">
+                Retourner
+                </a>
                 </div>
             </div>
     {% endfor %}

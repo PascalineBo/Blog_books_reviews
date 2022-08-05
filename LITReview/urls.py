@@ -31,6 +31,7 @@ urlpatterns = [
         redirect_authenticated_user=True),
         name='login'),
     path('home/', blog.views.home, name='home'),
+    path('posts/', blog.views.posts, name='posts'),
     path('ticket/', blog.views.ticket_upload, name='ticket'),
     path('review/', blog.views.ticket_review_upload, name='review'),
     path('logout/', LogoutView.as_view(template_name='authentication/login.html'), name='logout'),

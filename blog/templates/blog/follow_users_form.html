@@ -8,8 +8,6 @@
     </form>
 
 <thead>Abonnements:</thead>
-
-    <!--à retravailler-->
     <table class="table">
         {% for followed_user in followed_users %}
         <tbody>
@@ -17,11 +15,11 @@
         </tbody>
         {% endfor %}
     </table>
-    <thead>Abonnés:</thead>
+<thead>Abonnés:</thead>
     <table class="table">
         {% for follower in followers %}
         <tbody>
-            <td class="border border-dark">Abonnés : {{follower.user}} </td>
+            <td class="border border-dark">{{follower.user}} </td>
         </tbody>
         {% endfor %}
     </table>
