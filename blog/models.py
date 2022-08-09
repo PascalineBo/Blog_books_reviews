@@ -25,10 +25,6 @@ class Ticket(models.Model):  # ticket model
         if self.image:
             self.resize_image()
 
-    def has_review(self):
-        existing_review = models.Review.objects.filter(ticket_id=self.id)
-        return existing_review.id
-
     def __str__(self):
         return self.title
 
