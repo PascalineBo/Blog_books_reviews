@@ -1,35 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-        <div class="container border border-dark">
-            <div class="row">
-                <div class="col-5 text-left">
-                <p>{{ ticket.user }} a demandé une critique:</p>
-                </div>
-                <div class="col-2 text-right">
-                    <p>{{ ticket.time_created }}</p>
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-5 text-left">
+                    <p>Demande de critique de:{{ ticket.user }}</p>
+                    </div>
+                    <div class="col-2 text-right">
+                        <p>le: {{ ticket.time_created }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container border border-dark">
-            <h4>Titre :{{ ticket.title }}</h4>
-        </div>
-        <div class="container border border-dark">
-            <p>{{ ticket.description }}</p>
-            {% if ticket.image %}
-                <img src="{{ ticket.image.url }}">
-            {% endif %}
+            <h4>Titre :</h4>
+            <p class="container border border-dark">
+                {{ ticket.title }}
+            </p>
+            <h4>Description :</h4>
+            <div class="container border border-dark">
+                <p>{{ ticket.description }}</p>
+                {% if ticket.image %}
+                    <img src="{{ ticket.image.url }}">
+                {% endif %}
+            </div>
             <div class="row">
-                    <a href="{% url 'edit_ticket' ticket.id %}"
-                    class = "m-3 btn btn-secondary btn-md">
+                <a href="{% url 'edit_ticket' ticket.id %}"
+                   class = "m-3 btn btn-secondary btn-md col-3">
                     Modifier
-                    </a>
-                    <a href="{% url 'edit_ticket' ticket.id %}"
-                       class = "m-3 btn btn-secondary btn-md">
+                </a>
+                <a href="{% url 'edit_ticket' ticket.id %}"
+                   class = "m-3 btn btn-secondary btn-md col-3">
                     Supprimer
-                    </a>
-                    <a href="{% url 'home' %}" class = "m-3 btn btn-secondary btn-md">
+                </a>
+                <a href="{% url 'home' %}" class = "m-3 btn btn-secondary btn-md col-3">
                     Retourner
-                    </a>
+                </a>
             </div>
         </div>
 {% endblock content %}

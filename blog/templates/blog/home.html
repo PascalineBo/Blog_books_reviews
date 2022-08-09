@@ -11,7 +11,7 @@
         </li>
     </div>
     {% for ticket in tickets %}
-            <div class="container border border-dark">
+            <div class="container border border-dark p-3">
                 <div class="row">
                     <div class="col-5 text-left">
                         <a href="{% url 'view_ticket' ticket.id %}">
@@ -22,19 +22,27 @@
                         <p>{{ ticket.time_created }}</p>
                     </div>
                 </div>
-                <h4>Titre :{{ ticket.title }}</h4>
-                {% if ticket.image %}
-                    <img src="{{ ticket.image.url }}">
-                {% endif %}
-                <div class="text-right">
-                    <a href="{% url 'review' %}" class="btn btn-secondary btn-sm">
-                        Créer une critique
-                    </a>
+                <div class="row">
+                    <div class="col-9 text-left">
+                        <h4>Titre :{{ ticket.title }}</h4>
+                        {% if ticket.image %}
+                        <img src="{{ ticket.image.url }}">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9 text-left">
+                    </div>
+                    <div class="col-3 text-right">
+                        <a href="{% url 'review' %}" class="btn btn-secondary btn-sm">
+                            Créer une critique
+                        </a>
+                    </div>
                 </div>
             </div>
     {% endfor %}
     {% for ticket in tickets_with_review %}
-            <div class="container border border-dark">
+            <div class="container border border-dark p-3">
                 <div class="row">
                     <div class="col-5 text-left">
                         <a href="{% url 'view_ticket' ticket.id %}">
@@ -49,12 +57,12 @@
                 {% if ticket.image %}
                     <img src="{{ ticket.image.url }}">
                 {% endif %}
-                <span>il y a déjà une critique</span>
+                <span>Une critique a été rédigée pour ce livre</span>
             </div>
     {% endfor %}
 
     {% for review in reviews %}
-            <div class="container border border-dark">
+            <div class="container border border-dark p-3">
                 <div class="row">
                     <div class="col-5 text-left">
                         <a href="{% url 'view_review' review.id %}">
@@ -70,7 +78,7 @@
                 <p>{{ review.body }}</p>
                 <p>{{ review.ticket}}</p>
                 <div class="container border border-dark">
-                    <h3>Demande de critique : {{ review.ticket.title }}</h3>
+                    <h5>Demande de critique : {{ review.ticket.title }}</h5>
                     <p>de: {{ review.ticket.user }} </p>
                     {% if review.ticket.image %}
                     <img src="{{ review.ticket.image.url }}">

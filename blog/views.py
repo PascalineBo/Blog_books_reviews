@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from . import forms, models
 from django.db import IntegrityError
 from django.contrib import messages
@@ -99,7 +99,7 @@ def edit_review(request, review_id):
                 edit_form.save()
                 return redirect('home')
         if 'delete_review' in request.POST:
-            delete_form = forms.TicketReviewForm(request.POST, request.FILES)
+            delete_form = forms.DeleteTicketReviewForm(request.POST, request.FILES)
             if delete_form.is_valid():
                 review.delete()
                 return redirect('home')
