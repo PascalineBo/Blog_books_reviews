@@ -2,15 +2,18 @@ from django import forms
 from . import models
 from django.contrib.auth import get_user_model
 
+
 class TicketForm(forms.ModelForm):
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     class Meta:
         model = models.Ticket
-        fields = ['title','description','image',]
+        fields = ['title', 'description', 'image',]
+
 
 class DeleteTicketForm(forms.Form):
     delete_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
 
 class TicketReviewForm(forms.ModelForm):
     """ticket = forms.ModelMultipleChoiceField(queryset=models.Ticket.objects.all())"""
@@ -22,8 +25,12 @@ class TicketReviewForm(forms.ModelForm):
 
     class Meta:
         model = models.Review
-        fields = ['ticket','headline','rating',
-                  'content','body']
+        fields = ['ticket', 'headline', 'rating',
+                  'content', 'body']
+
+
+class DeleteTicketReviewForm(forms.Form):
+    delete_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
 
 User = get_user_model()

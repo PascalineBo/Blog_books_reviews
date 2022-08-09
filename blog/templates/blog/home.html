@@ -26,19 +26,30 @@
                 {% if ticket.image %}
                     <img src="{{ ticket.image.url }}">
                 {% endif %}
-                <p>{{ ticket.id }}</p>
-                {% if ticket.review_list|length == 0 %}
-                    <p>{{ ticket.review_list|length }}!</p>
-                    <div class="text-right">
-                        <a href="{% url 'review' %}" class="btn btn-secondary btn-sm">
-                            Créer une critique
+                <div class="text-right">
+                    <a href="{% url 'review' %}" class="btn btn-secondary btn-sm">
+                        Créer une critique
+                    </a>
+                </div>
+            </div>
+    {% endfor %}
+    {% for ticket in tickets_with_review %}
+            <div class="container border border-dark">
+                <div class="row">
+                    <div class="col-5 text-left">
+                        <a href="{% url 'view_ticket' ticket.id %}">
+                            <p>{{ ticket.user }} a demandé une critique:</p>
                         </a>
                     </div>
-                    {% else %}
-                    <p>{{ ticket.review_list|length }}!</p>
-                    <span>il y a déjà une critique</span>
+                    <div class="col-2 text-right">
+                        <p>{{ ticket.time_created }}</p>
+                    </div>
+                </div>
+                <h4>Titre :{{ ticket.title }}</h4>
+                {% if ticket.image %}
+                    <img src="{{ ticket.image.url }}">
                 {% endif %}
-
+                <span>il y a déjà une critique</span>
             </div>
     {% endfor %}
 

@@ -10,13 +10,17 @@ from django.db.models import Q
 
 @login_required
 def home(request):
-    followed_users = models.UserFollows.objects.filter(user=request.user)
-    #pourquoi je n'arrive pas à utiliser le résultat du queryset ci-dessus?
-    tickets = models.Ticket.objects.all()
-    reviews = models.Review.objects.all()
-
+    users = [u.followed_user for u in models.UserFollows.objects.filter(user=request.user)]
+    users.append(request.user)
+    reviews = models.Review.objects.filter(user__in=users)
+    reviews_ticket_id = [r.ticket.id for r in models.Review.objects.filter(user__in=users)]
+    tickets_with_review = models.Ticket.objects.filter(Q(user__in=users)&Q(id__in=reviews_ticket_id))
+    tickets = models.Ticket.objects.filter(user__in=users).exclude(
+        id__in=tickets_with_review)
     return render(request, 'blog/home.html',context={'tickets': tickets,
-                                                     'reviews': reviews})
+                                                     'reviews': reviews,
+                                                     'tickets_with_review': tickets_with_review
+                                                     })
 @login_required
 def posts(request):
     tickets = models.Ticket.objects.filter(user=request.user)
@@ -69,7 +73,7 @@ def edit_ticket(request, ticket_id):
     delete_form = forms.DeleteTicketForm()
     if request.method == 'POST':
         if 'edit_ticket' in request.POST:
-            edit_form = forms.TicketForm(request.POST, request.FILES,instance=ticket)
+            edit_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
             if edit_form.is_valid():
                 edit_form.save()
                 return redirect('home')
@@ -80,14 +84,14 @@ def edit_ticket(request, ticket_id):
                 return redirect('home')
     context = {
         'edit_form': edit_form,
-        'delete_form': delete_form,}
+        'delete_form': delete_form}
     return render(request, 'blog/edit_ticket.html', context=context)
 
 @login_required
 def edit_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
     edit_form = forms.TicketReviewForm(instance=review)
-    delete_form = forms.DeleteTicketForm()
+    delete_form = forms.DeleteTicketReviewForm()
     if request.method == 'POST':
         if 'edit_review' in request.POST:
             edit_form = forms.TicketReviewForm(request.POST, instance=review)
@@ -95,13 +99,13 @@ def edit_review(request, review_id):
                 edit_form.save()
                 return redirect('home')
         if 'delete_review' in request.POST:
-            delete_form = forms.DeleteTicketForm(request.POST, request.FILES)
+            delete_form = forms.TicketReviewForm(request.POST, request.FILES)
             if delete_form.is_valid():
                 review.delete()
                 return redirect('home')
     context = {
         'edit_form': edit_form,
-        'delete_form': delete_form,}
+        'delete_form': delete_form}
     return render(request, 'blog/edit_review.html', context=context)
 
 
@@ -153,4 +157,4 @@ def follow_users(request):
                 return render(request,
                               "blog/follow_users_form.html",
                               context=context)
-    return render(request,"blog/follow_users_form.html", context=context)
+    return render(request, "blog/follow_users_form.html", context=context)

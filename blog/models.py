@@ -25,16 +25,13 @@ class Ticket(models.Model):  # ticket model
         if self.image:
             self.resize_image()
 
-    def review_exist(self):
-        review_list = []
-        reviews = models.Review.objects.all()
-        for review in reviews:
-            if review.ticket.id == self.id:
-                review_list.append(review.ticket.id)
-        return self.review_list
+    def has_review(self):
+        existing_review = models.Review.objects.filter(ticket_id=self.id)
+        return existing_review.id
 
     def __str__(self):
         return self.title
+
 
 class Review(models.Model):  # review model
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE, null=True, blank=True)
