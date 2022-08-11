@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <h2>Créer un ticket</h2>
-    <form method="post" enctype="multipart/form-data">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <div class="text-right mr-5">
-            <button type="submit" class="btn btn-secondary btn-sm">Envoyer</button>
-        </div>
-    </form>
-
-    <h2></h2>
-        <p></p>
-
+    <div class="text-center">
+        <h2>Créer un ticket</h2>
+        <form method="post" enctype="multipart/form-data" novalidate>
+            {{ form|crispy }}
+            {% csrf_token %}
+            <div class="text-right mr-5">
+                <button type="submit" class="btn btn-secondary btn-sm">Envoyer</button>
+            </div>
+        </form>
+    </div>
 {% endblock content %}

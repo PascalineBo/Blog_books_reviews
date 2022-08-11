@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p>Vous êtes connecté !</p>
     <div class="text-center w-100">
         <li class="list-inline-item w-30 m-3">
             <a href="{% url 'ticket' %}" class="btn btn-secondary btn-lg"
-            role="button" aria-disabled="true">Demander une critique</a>
+            role="button" aria-disabled="true" aria-pressed="true">Demander une critique</a>
         <li class="list-inline-item w-30 m-3">
             <a href="{% url 'review' %}" class="btn btn-secondary btn-lg"
-            role="button" aria-disabled="true">Créer une critique</a>
+            role="button" aria-disabled="true" aria-pressed="true">Créer une critique</a>
         </li>
     </div>
     {% for ticket in tickets %}
@@ -34,7 +33,7 @@
                     <div class="col-9 text-left">
                     </div>
                     <div class="col-3 text-right">
-                        <a href="{% url 'review' %}" class="btn btn-secondary btn-sm">
+                        <a href="{% url 'review' %}" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
                             Créer une critique
                         </a>
                     </div>

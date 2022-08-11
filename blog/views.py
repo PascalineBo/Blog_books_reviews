@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import NoReverseMatch
+
 from . import forms, models
 from django.db import IntegrityError
 from django.contrib import messages
@@ -13,10 +15,23 @@ def home(request):
     users = [u.followed_user for u in models.UserFollows.objects.filter(user=request.user)]
     users.append(request.user)
     reviews = models.Review.objects.filter(user__in=users)
-    reviews_ticket_id = [r.ticket.id for r in models.Review.objects.filter(user__in=users)]
-    tickets_with_review = models.Ticket.objects.filter(Q(user__in=users)&Q(id__in=reviews_ticket_id))
-    tickets = models.Ticket.objects.filter(user__in=users).exclude(
-        id__in=tickets_with_review)
+    for r in models.Review.objects.filter(user__in=users):
+        try:
+            reviews_ticket_id = [r.ticket.id]
+        except AttributeError:  # cas d'une critique spontanée sans ticket
+            pass
+    try:
+        tickets_with_review = models.Ticket.objects.filter(Q(user__in=users)&Q(id__in=reviews_ticket_id))
+    except UnboundLocalError:  # cas d'un nouvel utilisateur qui n'a encore ni abonné ni ticket
+        tickets_with_review = []
+    try:
+        tickets = models.Ticket.objects.filter(user__in=users).exclude(
+            id__in=tickets_with_review)
+    except UnboundLocalError:  # cas d'un nouvel utilisateur qui n'a encore ni abonné ni ticket
+        tickets = []
+    except ValueError:  # cas d'un nouvel utilisateur qui n'a encore ni abonné ni ticket
+        tickets = []
+
     return render(request, 'blog/home.html',context={'tickets': tickets,
                                                      'reviews': reviews,
                                                      'tickets_with_review': tickets_with_review

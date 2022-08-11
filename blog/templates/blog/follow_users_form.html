@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <h2>Suivre des utilisateurs</h2>
-    <form method="post" enctype="multipart/form-data">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" class = "m-3 btn btn-secondary btn-md">Confirmer</button>
-    </form>
+    <div class="text-center">
+        <h4>Suivre des utilisateurs</h4>
+        <form method="post" enctype="multipart/form-data" novalidate>
+            {{ form|crispy }}
+            {% csrf_token %}
+            <button type="submit" class = "m-3 btn btn-secondary btn-md">Confirmer</button>
+        </form>
+    </div>
 
 <thead>Abonnements:</thead>
     <table class="table">

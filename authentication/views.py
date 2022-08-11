@@ -6,7 +6,6 @@ from django.conf import settings
 from . import forms
 
 
-
 def signup_page(request):
     form = forms.SignupForm()
     if request.method == 'POST':
@@ -17,6 +16,7 @@ def signup_page(request):
             login(request, user)
             return redirect(settings.LOGIN_REDIRECT_URL)
     return render(request, 'authentication/signup.html', context={'form': form})
+
 
 class LoginPageView(View):
     template_name = 'authentication/login.html'

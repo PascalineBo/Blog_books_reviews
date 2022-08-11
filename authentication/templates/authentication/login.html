@@ -1,19 +1,26 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="row">
-        <div class="col"><p>Inscrivez-vous maintenant </p>
-                <a href="{% url 'signup' %}" class = "btn btn-secondary btn-md">
+        <div class="col-6 text-center"><p>Inscrivez-vous maintenant </p>
+                <a href="{% url 'signup' %}" class = "btn btn-secondary btn-md" role="button" aria-pressed="true">
                     S'inscrire
                 </a>
         </div>
-        <div class="col"><p>Connectez-vous</p>
-            <form method="post">
-                 {{ form.as_p }}
+        <div class="col-6 text-center"><p>Connectez-vous</p>
+            <form method="post" novalidate>
+                 {{ form|crispy }}
                  {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class = "btn btn-secondary btn-md">Se connecter</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4 m-1">
+                            <button type="submit" class = "btn btn-secondary btn-md " role="button" aria-pressed="true">Se connecter</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
+
     </div>
 {% endblock content %}
