@@ -6,7 +6,7 @@
         <form method="post" enctype="multipart/form-data" novalidate>
             {{ form|crispy }}
             {% csrf_token %}
-            <button type="submit" class = "m-3 btn btn-secondary btn-md">Confirmer</button>
+            <button type="submit" class = "m-3 btn btn-secondary btn-md" aria-pressed="true">Confirmer</button>
         </form>
     </div>
 
@@ -14,7 +14,14 @@
     <table class="table">
         {% for followed_user in followed_users %}
         <tbody>
-            <td class="border border-dark">{{followed_user.followed_user}}</td>
+            <td class="border border-dark w-75">
+                        {{followed_user.followed_user}}
+            </td>
+            <td class="border border-dark w-25">
+                    <a href="{% url 'delete_subscription' followed_user.id %}" aria-pressed="true">
+                    <button type="submit" class = "m-1 btn btn-secondary btn-md" >Se désabonner</button>
+                    </a>
+            </td>
         </tbody>
         {% endfor %}
     </table>

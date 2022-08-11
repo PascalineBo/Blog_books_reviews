@@ -1,7 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.urls import NoReverseMatch
-
 from . import forms, models
 from django.db import IntegrityError
 from django.contrib import messages
@@ -148,6 +146,13 @@ def follow_users(request):
             return render(request,
                           "blog/follow_users_form.html",
                           context=context)
+        except Null:
+            error_message = f"<strong>{request.POST['followed_user'].lower()}" \
+                            f"</strong> n'existe pas dans la base de donnée."
+            messages.add_message(request, messages.ERROR, message=error_message)
+            return render(request,
+                          "blog/follow_users_form.html",
+                          context=context)
         else:
             # case where the user is looking for himself
             if new_followed_user.username == request.user.username:
@@ -173,3 +178,11 @@ def follow_users(request):
                               "blog/follow_users_form.html",
                               context=context)
     return render(request, "blog/follow_users_form.html", context=context)
+
+
+@login_required
+def delete_subscription(request, followed_user_id):
+    subscription = models.UserFollows.objects.get(id=followed_user_id)
+    subscription.delete()
+    return redirect('follow_users')
+

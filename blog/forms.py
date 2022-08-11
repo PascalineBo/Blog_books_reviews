@@ -31,13 +31,17 @@ class TicketReviewForm(forms.ModelForm):
 class DeleteTicketReviewForm(forms.Form):
     delete_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
+class DeleteSubscriptionForm(forms.Form):
+    delete_subscription = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
 
 User = get_user_model()
 
 
 class UserFollowsForm(forms.ModelForm):
     followed_user = forms.CharField(max_length=256,
-                                    widget=forms.TextInput(attrs={"placeholder": " Nom d'utilisateur "}))
+                                    widget=forms.TextInput(attrs={"placeholder": " Nom d'utilisateur"}),
+                                    )
 
     class Meta:
         model = models.UserFollows

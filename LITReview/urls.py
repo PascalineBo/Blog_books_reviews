@@ -43,6 +43,7 @@ urlpatterns = [
     path('home/', blog.views.edit_ticket, name='delete_ticket'),
     path('home/', blog.views.edit_review, name='delete_review'),
     path('follow-users/', blog.views.follow_users, name='follow_users'),
+    path('follow-users/<int:followed_user_id>', blog.views.delete_subscription, name='delete_subscription'),
 ]
 
 if settings.DEBUG:
