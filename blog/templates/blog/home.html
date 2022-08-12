@@ -33,7 +33,9 @@
                     <div class="col-9 text-left">
                     </div>
                     <div class="col-3 text-right">
-                        <a href="{% url 'review' %}" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
+                        <a href="{% url 'ticket_review' ticket.id %}"
+                           class="btn btn-secondary btn-sm"
+                           role="button" aria-pressed="true">
                             Créer une critique
                         </a>
                     </div>
@@ -72,7 +74,13 @@
                         <span>{{review.time_created}}</span>
                     </div>
                 </div>
-                <h5>{{ review.headline }} - {{ review.rating }} étoiles</h5>
+
+                <h5>{{ review.headline }} -
+                    {% range_rating review.rating as rating %}
+                        {% for star in rating %}
+                        <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                </h5>
                 <p>{{ review.content }}</p>
                 <p>{{ review.body }}</p>
                 <p>{{ review.ticket}}</p>

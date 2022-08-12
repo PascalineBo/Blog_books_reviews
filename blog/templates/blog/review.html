@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="text-center">
+        <h2>Ecrire une critique</h2>
+        <p>Vous êtes en train de poster en réponse à:</p>
+        <form method="post" enctype="multipart/form-data" novalidate>
+            {{ form|crispy }}
+            {% csrf_token %}
+            <input type="number" name="review_rating" class="rating" />
+            <button type="submit" class = "btn btn-secondary btn-md">Envoyer</button>
+        </form>
+    </div>
+{% endblock content %}

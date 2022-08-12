@@ -1,12 +1,32 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="text-center">
-        <h2>Modifier</h2>
+    <h5 class="text-center">Modifier votre critique</h5>
+        <div class="container border border-dark">
+            <p>Vous êtes en train de poster en réponse à:</p>
+                <div class="container border border-dark">
+                    <div class="row">
+                        <p class="col-8">{{ review.ticket.user }} a demandé une critique
+                        </p>
+                        <p class="col-4">{{ review.ticket.time_created }}
+                        </p>
+                    </div>
+                    <h5>{{ review.ticket.title }}
+                    </h5>
+                    <p>{{ review.ticket.description }}</p>
+                    {% if review.ticket.image %}
+                    <img src="{{ review.ticket.image.url }}">
+                    {% endif %}
+                </div>
+        </div>
+    <div class="container border border-dark">
+        <h5>Critique:</h5>
+        <div class="text-center">
+        <h3>Modifier</h3>
         <form action="" method="post" enctype="multipart/form-data" novalidate>
             {{ edit_form|crispy }}
             {% csrf_token %}
-            <input type="submit" value= "Sauvegarder" class="m-3 btn btn-secondary btn-sm">
+            <input type="submit" value= "Sauvegarder" class="m-3 btn btn-secondary btn-md">
         </form>
         <h3>Supprimer</h3>
         <form method="post" enctype="multipart/form-data">

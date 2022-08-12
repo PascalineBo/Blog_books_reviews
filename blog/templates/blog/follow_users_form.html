@@ -4,9 +4,15 @@
     <div class="text-center">
         <h4>Suivre des utilisateurs</h4>
         <form method="post" enctype="multipart/form-data" novalidate>
-            {{ form|crispy }}
-            {% csrf_token %}
-            <button type="submit" class = "m-3 btn btn-secondary btn-md" aria-pressed="true">Confirmer</button>
+            <div class="row">
+                <div class="col-9">{{ form|crispy }}
+                {% csrf_token %}
+                </div>
+                <button type="submit"
+                        class = "col-2 m-3 btn btn-secondary btn-sm"
+                        aria-pressed="true">Envoyer
+                </button>
+            </div>
         </form>
     </div>
 

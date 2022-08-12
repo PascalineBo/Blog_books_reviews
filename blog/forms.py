@@ -18,7 +18,7 @@ class DeleteTicketForm(forms.Form):
 class TicketReviewForm(forms.ModelForm):
     edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     RATING_CHOICES = [
-        (0, "Zero"), (1, "*"), (2, "**"), (3, "***"), (4, "****"), (5, "*****")
+        (0, "- 0"), (1, "- 1"), (2, "- 2"), (3, "- 3"), (4, "- 4"), (5, "- 5")
     ]
     rating = forms.ChoiceField(widget=forms.RadioSelect, choices=RATING_CHOICES)
 
@@ -30,6 +30,7 @@ class TicketReviewForm(forms.ModelForm):
 
 class DeleteTicketReviewForm(forms.Form):
     delete_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
 
 class DeleteSubscriptionForm(forms.Form):
     delete_subscription = forms.BooleanField(widget=forms.HiddenInput, initial=True)

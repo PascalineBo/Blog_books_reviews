@@ -6,6 +6,7 @@ from django.contrib import messages
 from authentication.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from django.template.defaulttags import register
 
 
 @login_required
@@ -13,13 +14,15 @@ def home(request):
     users = [u.followed_user for u in models.UserFollows.objects.filter(user=request.user)]
     users.append(request.user)
     reviews = models.Review.objects.filter(user__in=users)
-    for r in models.Review.objects.filter(user__in=users):
-        try:
-            reviews_ticket_id = [r.ticket.id]
-        except AttributeError:  # cas d'une critique spontanée sans ticket
+    reviews_ticket_id = []
+    for r in reviews:
+        if r.ticket is None: # cas d'une critique spontanée sans ticket
             pass
+        else:
+            reviews_ticket_id.append(r.ticket.id)
     try:
-        tickets_with_review = models.Ticket.objects.filter(Q(user__in=users)&Q(id__in=reviews_ticket_id))
+        tickets_with_review = models.Ticket.objects.filter(
+            Q(user__in=users) & Q(id__in=reviews_ticket_id))
     except UnboundLocalError:  # cas d'un nouvel utilisateur qui n'a encore ni abonné ni ticket
         tickets_with_review = []
     try:
@@ -30,16 +33,18 @@ def home(request):
     except ValueError:  # cas d'un nouvel utilisateur qui n'a encore ni abonné ni ticket
         tickets = []
 
-    return render(request, 'blog/home.html',context={'tickets': tickets,
-                                                     'reviews': reviews,
-                                                     'tickets_with_review': tickets_with_review
-                                                     })
+    return render(request, 'blog/home.html', context={'tickets': tickets,
+                                                      'reviews': reviews,
+                                                      'tickets_with_review': tickets_with_review
+                                                      })
+
+
 @login_required
 def posts(request):
     tickets = models.Ticket.objects.filter(user=request.user)
     reviews = models.Review.objects.filter(user=request.user)
     return render(request, 'blog/posts.html',context={'tickets': tickets,
-                                                     'reviews': reviews})
+                                                      'reviews': reviews})
 
 @login_required
 def ticket_upload(request):
@@ -53,10 +58,12 @@ def ticket_upload(request):
             # now we can save
             ticket.save()
             return redirect('home')
-    return render(request, 'blog/ticket.html',context={'form': form})
+    return render(request, 'blog/ticket.html', context={'form': form})
+
 
 @login_required
-def ticket_review_upload(request):
+def ticket_review_upload(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
     form = forms.TicketReviewForm()
     if request.method == 'POST':
         form = forms.TicketReviewForm(request.POST, request.FILES)
@@ -67,17 +74,36 @@ def ticket_review_upload(request):
             # now we can save
             review.save()
             return redirect('home')
-    return render(request, 'blog/ticket_review.html', context={'form': form})
+    return render(request, 'blog/ticket_review.html', context={'form': form,
+                                                               'ticket': ticket})
+
+
+@login_required
+def review_upload(request):
+    form = forms.TicketReviewForm()
+    if request.method == 'POST':
+        form = forms.TicketReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            review = form.save(commit=False)
+            # set the uploader to the user before saving the model
+            review.user = request.user
+            # now we can save
+            review.save()
+            return redirect('home')
+    return render(request, 'blog/review.html', context={'form': form})
+
 
 @login_required
 def view_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     return render(request, 'blog/view_ticket.html', {'ticket': ticket})
 
+
 @login_required
 def view_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
     return render(request, 'blog/view_review.html', {'review': review})
+
 
 @login_required
 def edit_ticket(request, ticket_id):
@@ -100,6 +126,7 @@ def edit_ticket(request, ticket_id):
         'delete_form': delete_form}
     return render(request, 'blog/edit_ticket.html', context=context)
 
+
 @login_required
 def edit_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
@@ -118,7 +145,8 @@ def edit_review(request, review_id):
                 return redirect('home')
     context = {
         'edit_form': edit_form,
-        'delete_form': delete_form}
+        'delete_form': delete_form,
+        'review': review,}
     return render(request, 'blog/edit_review.html', context=context)
 
 
@@ -185,4 +213,10 @@ def delete_subscription(request, followed_user_id):
     subscription = models.UserFollows.objects.get(id=followed_user_id)
     subscription.delete()
     return redirect('follow_users')
+
+
+@login_required  # fonction pour l'affichage en étoile du rating des livres
+@register.simple_tag
+def range_rating(number):
+    return [*range(1, number+1)]
 
