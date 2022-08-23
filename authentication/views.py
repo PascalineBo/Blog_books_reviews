@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.conf import settings
@@ -39,5 +39,4 @@ class LoginPageView(View):
                 return redirect('home')
         message = 'Identifiants invalides.'
         return render(request, self.template_name, context={'form': form, 'message': message})
-
 

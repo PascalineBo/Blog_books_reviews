@@ -45,7 +45,7 @@ class Review(models.Model):  # review model
     content = models.CharField(max_length=5000)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     headline = models.CharField(max_length=128)
-    body = models.TextField(max_length = 8192, blank=True)
+    body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
 
@@ -62,4 +62,4 @@ class UserFollows(models.Model):
     class Meta:
         # ensures we don't get multiple UserFollows instances
         # for unique user-user_followed pairs
-        unique_together = ['user', 'followed_user',]
+        unique_together = ['user', 'followed_user', ]

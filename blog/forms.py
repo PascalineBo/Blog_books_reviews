@@ -61,4 +61,3 @@ class UserFollowsForm(forms.ModelForm):
         followed_user = cleaned_data.get('followed_user')
         if models.UserFollows.objects.filter(followed_user=followed_user).exists():
             raise forms.ValidationError('Category already exists')
-

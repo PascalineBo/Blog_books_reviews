@@ -16,7 +16,7 @@ def home(request):
     reviews = models.Review.objects.filter(user__in=users)
     reviews_ticket_id = []
     for r in reviews:
-        if r.ticket is None: # cas d'une critique spontanée sans ticket
+        if r.ticket is None:  # cas d'une critique spontanée sans ticket
             pass
         else:
             reviews_ticket_id.append(r.ticket.id)
@@ -43,8 +43,9 @@ def home(request):
 def posts(request):
     tickets = models.Ticket.objects.filter(user=request.user)
     reviews = models.Review.objects.filter(user=request.user)
-    return render(request, 'blog/posts.html',context={'tickets': tickets,
-                                                      'reviews': reviews})
+    return render(request, 'blog/posts.html', context={'tickets': tickets,
+                                                       'reviews': reviews})
+
 
 @login_required
 def ticket_upload(request):
@@ -146,7 +147,7 @@ def edit_review(request, review_id):
     context = {
         'edit_form': edit_form,
         'delete_form': delete_form,
-        'review': review,}
+        'review': review, }
     return render(request, 'blog/edit_review.html', context=context)
 
 
@@ -174,7 +175,7 @@ def follow_users(request):
             return render(request,
                           "blog/follow_users_form.html",
                           context=context)
-        except Null:
+        except None:
             error_message = f"<strong>{request.POST['followed_user'].lower()}" \
                             f"</strong> n'existe pas dans la base de donnée."
             messages.add_message(request, messages.ERROR, message=error_message)
@@ -225,4 +226,3 @@ def range_rating(number):
 @register.simple_tag
 def range_not_rating(number):
     return [*range(number, 5)]
-
