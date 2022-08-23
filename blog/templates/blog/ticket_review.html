@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <h5 class="text-center">Créer une critique</h5>
-        <div class="container border border-dark">
+        <div class="container border border-dark text-center w-75">
             <p>Vous êtes en train de poster en réponse à:</p>
                 <div class="container border border-dark">
                     <div class="row">
@@ -15,7 +15,7 @@
                     </h5>
                     <p>{{ ticket.description }}</p>
                     {% if ticket.image %}
-                    <img src="{{ review.ticket.image.url }}">
+                    <img src="{{ review.ticket.image.url }}" alt="book cover">
                     {% endif %}
                 </div>
             <h5>Critique:

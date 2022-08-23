@@ -1,43 +1,48 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="text-center">
-        <h4>Suivre des utilisateurs</h4>
-        <form method="post" enctype="multipart/form-data" novalidate>
-            <div class="row">
-                <div class="col-9">{{ form|crispy }}
-                {% csrf_token %}
+    <div class="container w-75">
+        <div class="text-center">
+            <h4>Suivre des utilisateurs</h4>
+            <br/>
+            <form method="post" enctype="multipart/form-data" novalidate>
+                <div class="row align-items-center">
+                    <div class="col-9" >{{ form|crispy }}
+                    {% csrf_token %}
+                    </div>
+                    <button type="submit"
+                            class = "col-2 m-3 mb-4 mt-2 btn btn-secondary btn-sm"
+                            aria-pressed="true">Envoyer
+                    </button>
                 </div>
-                <button type="submit"
-                        class = "col-2 m-3 btn btn-secondary btn-sm"
-                        aria-pressed="true">Envoyer
-                </button>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
 
-<thead>Abonnements:</thead>
-    <table class="table">
-        {% for followed_user in followed_users %}
-        <tbody>
-            <td class="border border-dark w-75">
-                        {{followed_user.followed_user}}
-            </td>
-            <td class="border border-dark w-25">
+        <thead>Abonnements:
+        </thead>
+        <table class="table">
+            {% for followed_user in followed_users %}
+            <tbody>
+                <td class="border border-dark w-75">
+                    {{followed_user.followed_user}}
+                </td>
+                <td class="border border-dark w-25">
                     <a href="{% url 'delete_subscription' followed_user.id %}" aria-pressed="true">
-                    <button type="submit" class = "m-1 btn btn-secondary btn-md" >Se désabonner</button>
+                        <button type="submit" class = "m-1 btn btn-secondary btn-md" >Se désabonner</button>
                     </a>
-            </td>
-        </tbody>
-        {% endfor %}
-    </table>
-<thead>Abonnés:</thead>
-    <table class="table">
-        {% for follower in followers %}
-        <tbody>
-            <td class="border border-dark">{{follower.user}} </td>
-        </tbody>
-        {% endfor %}
-    </table>
-
+                </td>
+            </tbody>
+            {% endfor %}
+            </table>
+        <thead>Abonnés:
+        </thead>
+        <table class="table">
+            {% for follower in followers %}
+            <tbody>
+                <td class="border border-dark">{{follower.user}}
+                </td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock content %}

@@ -10,7 +10,7 @@ class Ticket(models.Model):  # ticket model
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
-    IMAGE_MAX_SIZE = (500, 500)
+    IMAGE_MAX_SIZE = (300, 300)
 
     def resize_image(self):
         image = Image.open(self.image)
@@ -29,9 +29,18 @@ class Ticket(models.Model):  # ticket model
 
 
 class Review(models.Model):  # review model
+    RATING_CHOICES = [(0, "- 0"),
+                      (1, "- 1"),
+                      (2, "- 2"),
+                      (3, "- 3"),
+                      (4, "- 4"),
+                      (5, "- 5")]
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE, null=True, blank=True)
     rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(0),
-                                                          MaxValueValidator(5)])
+                                                          MaxValueValidator(5)],
+                                              choices=RATING_CHOICES,
+                                              verbose_name="Note"
+                                              )
 
     content = models.CharField(max_length=5000)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

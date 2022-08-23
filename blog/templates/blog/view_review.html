@@ -16,7 +16,7 @@
         <div class="container border border-dark">
             <p>{{ review.content }}</p>
             {% if review.ticket.image %}
-                <img src="{{ review.ticket.image.url }}">
+                <img src="{{ review.ticket.image.url }}" alt="book cover">
             {% endif %}
             <p>{{ review.body }}</p>
             <div class="row">

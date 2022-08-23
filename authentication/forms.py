@@ -4,11 +4,24 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class SignupForm(UserCreationForm):
+    username = forms.CharField(label='',
+                               widget=forms.TextInput(attrs={'class': 'form-control',
+                                                             'placeholder': 'Username'}))
+    password1 = forms.CharField(max_length=63, label='',
+                                widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                  'placeholder': 'Mot de passe'}))
+    password2 = forms.CharField(max_length=63, label='',
+                                widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                  'placeholder': 'Confirmer le mot'
+                                                                                 ' de passe'}))
+
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ('username', 'role')
+        role = forms.CharField(widget=forms.HiddenInput(), required=False)
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=63, label='Nom d’utilisateur')
-    password = forms.CharField(max_length=63, widget=forms.PasswordInput, label='Mot de passe')
+    username = forms.CharField(max_length=63, label='',
+                               widget=forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'}))
+    password = forms.CharField(max_length=63, label='',
+                               widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))

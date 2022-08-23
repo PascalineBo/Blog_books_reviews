@@ -220,3 +220,9 @@ def delete_subscription(request, followed_user_id):
 def range_rating(number):
     return [*range(1, number+1)]
 
+
+@login_required  # fonction pour l'affichage en étoile du rating des livres
+@register.simple_tag
+def range_not_rating(number):
+    return [*range(number, 5)]
+

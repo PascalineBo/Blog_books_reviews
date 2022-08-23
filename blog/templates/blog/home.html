@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="text-center w-100">
+    <ul class="text-center w-100">
         <li class="list-inline-item w-30 m-3">
             <a href="{% url 'ticket' %}" class="btn btn-secondary btn-lg"
             role="button" aria-disabled="true" aria-pressed="true">Demander une critique</a>
@@ -8,16 +8,16 @@
             <a href="{% url 'review' %}" class="btn btn-secondary btn-lg"
             role="button" aria-disabled="true" aria-pressed="true">Créer une critique</a>
         </li>
-    </div>
+    </ul>
     {% for ticket in tickets %}
-            <div class="container border border-dark p-3">
+            <div class="container border border-dark p-3 w-50">
                 <div class="row">
-                    <div class="col-5 text-left">
+                    <div class="col-9 text-left">
                         <a href="{% url 'view_ticket' ticket.id %}">
                             <p>{{ ticket.user }} a demandé une critique:</p>
                         </a>
                     </div>
-                    <div class="col-2 text-right">
+                    <div class="col-3 pull-right">
                         <p>{{ ticket.time_created }}</p>
                     </div>
                 </div>
@@ -25,14 +25,14 @@
                     <div class="col-9 text-left">
                         <h4>Titre :{{ ticket.title }}</h4>
                         {% if ticket.image %}
-                        <img src="{{ ticket.image.url }}">
+                        <img src="{{ ticket.image.url }}" alt="book cover">
                         {% endif %}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-9 text-left">
+                    <div class="col-md-9 col-sm-8 text-left">
                     </div>
-                    <div class="col-3 text-right">
+                    <div class="col-md-3 col-sm-4 text-right">
                         <a href="{% url 'ticket_review' ticket.id %}"
                            class="btn btn-secondary btn-sm"
                            role="button" aria-pressed="true">
@@ -43,34 +43,34 @@
             </div>
     {% endfor %}
     {% for ticket in tickets_with_review %}
-            <div class="container border border-dark p-3">
+            <div class="container border border-dark p-3 w-50">
                 <div class="row">
-                    <div class="col-5 text-left">
+                    <div class="col-9 text-left">
                         <a href="{% url 'view_ticket' ticket.id %}">
                             <p>{{ ticket.user }} a demandé une critique:</p>
                         </a>
                     </div>
-                    <div class="col-2 text-right">
+                    <div class="col-3 text-right">
                         <p>{{ ticket.time_created }}</p>
                     </div>
                 </div>
                 <h4>Titre :{{ ticket.title }}</h4>
                 {% if ticket.image %}
-                    <img src="{{ ticket.image.url }}">
+                    <img src="{{ ticket.image.url }}" alt="book cover">
                 {% endif %}
                 <span>Une critique a été rédigée pour ce livre</span>
             </div>
     {% endfor %}
 
     {% for review in reviews %}
-            <div class="container border border-dark p-3">
+            <div class="container border border-dark p-3 w-50">
                 <div class="row">
-                    <div class="col-5 text-left">
+                    <div class="col-9 text-left">
                         <a href="{% url 'view_review' review.id %}">
                             <span>{{review.user}} posted a review </span>
                         </a>
                     </div>
-                    <div class="col-2 text-right">
+                    <div class="col-3 text-right">
                         <span>{{review.time_created}}</span>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                     <h5>Demande de critique : {{ review.ticket.title }}</h5>
                     <p>de: {{ review.ticket.user }} </p>
                     {% if review.ticket.image %}
-                    <img src="{{ review.ticket.image.url }}">
+                    <img src="{{ review.ticket.image.url }}" alt="book cover">
                     {% endif %}
                 </div>
             </div>

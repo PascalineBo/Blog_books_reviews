@@ -8,18 +8,16 @@
                 </a>
         </div>
         <div class="col-6 text-center"><p>Connectez-vous</p>
-            <form method="post" novalidate>
+            <div class="container">
+                <form method="post" novalidate class="container">
                  {{ form|crispy }}
                  {% csrf_token %}
-                <div class="container">
-                    <div class="row">
-                        <div class="col-8"></div>
-                        <div class="col-4 m-1">
-                            <button type="submit" class = "btn btn-secondary btn-md " role="button" aria-pressed="true">Se connecter</button>
+                        <div class="m-1">
+                            <button type="submit" class = "btn btn-secondary btn-md pull-right"
+                                    aria-pressed="true">Se connecter</button>
                         </div>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
 
     </div>
