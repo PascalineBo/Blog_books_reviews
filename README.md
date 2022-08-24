@@ -14,7 +14,17 @@ Ce dossier contient tous les fichiers de code définissant les interfaces et les
 
 #### Dossier Blog:
 Ce dossier contient tout les fichiers de code définissant les autres interfaces de l'Appli (page d'accueil, pages de créations de demande de critique et de rédaction,
-page de suivi des abonnements...) et leurs procédés; il contient également le dossier static, avec un fichier css et un fichier js
+page de suivi des abonnements...) et leurs procédés; il contient également le dossier static, avec un fichier css et un fichier js:
 ![image](https://user-images.githubusercontent.com/97900138/186420525-ea1e4f19-ae36-48b9-ab3b-ba33d1058743.png)
 
+#### Dossier LITReview:
+Ce dossier contient notamment les fichiers spécifiques settings.py et urls.py de l'Appli. 
+
+![image](https://user-images.githubusercontent.com/97900138/186422141-546517f3-55f8-4705-96fb-690f56749063.png)
+
+#### Dossier media:
+Ce dossier stocke les images téléchargées par l'Appli
+
+#### Dossier templates:
+Ce dossier contient le fichier base.html, qui contient la partie de code html commune à toutes les pages de l'Appli
 
