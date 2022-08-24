@@ -38,7 +38,7 @@ Ce fichier contient le script utilitaire de ligne de commande de Django
 (i) Requis: téléchargez **Python 3.10**
 https://www.python.org/downloads/
 
-(ii)puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli
+(ii) puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli
 
 (iii) créez votre environnement virtuel
 
