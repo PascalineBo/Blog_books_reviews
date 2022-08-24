@@ -59,7 +59,14 @@ pip install -r requirements.txt
 
 ### Experience utilisateur:
 
-(i) avec votre terminal, positionnez vous 
+(i) avec votre terminal, positionnez vous dans le dossier dans lequel vous avez installé l'Appli
+
+(ii) activez l'environnement virtuel
+
+(iii) ensuite tapez la commande 
+$ python3 manage.py runserver
+
+pour exécuter le serveur de développement
 
 ### Experience administrateur:
 
