@@ -29,7 +29,7 @@ Ce dossier stocke les images téléchargées par l'Appli
 Ce dossier contient le fichier base.html, qui contient la partie de code html commune à toutes les pages de l'Appli
 
 #### Fichier db.sqlite3:
-Ce fichier est la base de données de l'appli
+Ce fichier est la base de données de Django
 
 #### Fichier manage.py:
 Ce fichier contient le script utilitaire de ligne de commande de Django
