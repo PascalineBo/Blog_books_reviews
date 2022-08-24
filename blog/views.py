@@ -169,23 +169,23 @@ def follow_users(request):
         try:
             new_followed_user = User.objects.get(username=request.POST['followed_user'])
         except ObjectDoesNotExist:
-            error_message = f"<strong>{request.POST['followed_user'].lower()}" \
-                            f"</strong> n'existe pas dans la base de donnée."
+            error_message = f"{request.POST['followed_user'].lower()}" \
+                            f" n'existe pas dans la base de donnée."
             messages.add_message(request, messages.ERROR, message=error_message)
             return render(request,
                           "blog/follow_users_form.html",
                           context=context)
-        except None:
-            error_message = f"<strong>{request.POST['followed_user'].lower()}" \
-                            f"</strong> n'existe pas dans la base de donnée."
-            messages.add_message(request, messages.ERROR, message=error_message)
-            return render(request,
-                          "blog/follow_users_form.html",
-                          context=context)
+
         else:
-            # case where the user is looking for himself
+            # case when the user is looking for himself
             if new_followed_user.username == request.user.username:
                 error_message = " --- Vous ne pouvez pas vous suivre vous même! --- "
+                messages.add_message(request, messages.ERROR, message=error_message)
+                return render(request, "blog/follow_users_form.html",
+                              context=context)
+            # case when no username has been keyed in
+            elif new_followed_user.username == '':
+                error_message = " --- Veuillez saisir un nom d'utilisateur --- "
                 messages.add_message(request, messages.ERROR, message=error_message)
                 return render(request, "blog/follow_users_form.html",
                               context=context)
@@ -195,13 +195,13 @@ def follow_users(request):
             try:
                 new_subscription.save()
             except IntegrityError:
-                error_message = f"Vous suivez déjà <strong>{new_followed_user}</strong>."
+                error_message = f"Vous suivez déjà {new_followed_user}."
                 messages.add_message(request, messages.ERROR, message=error_message)
                 return render(request,
                               "blog/follow_users_form.html",
                               context=context)
             else:
-                success_message = f"Vous suivez désormais <strong>{new_subscription.followed_user}</strong>."
+                success_message = f"Vous suivez désormais {new_subscription.followed_user}."
                 messages.add_message(request, messages.SUCCESS, message=success_message)
                 return render(request,
                               "blog/follow_users_form.html",
