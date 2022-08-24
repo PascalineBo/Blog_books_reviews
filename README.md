@@ -76,7 +76,9 @@ http://127.0.0.1:8000/
 Vous devriez arriver sur la page de login. 
 
 Essayer de vous connecter avec l'utilisateur:
+
 username: toto
+
 password: S3cret!
 
 
