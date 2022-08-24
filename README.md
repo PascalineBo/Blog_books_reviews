@@ -8,6 +8,7 @@
 #### Architecture du Projet:
 
 Remarque: l'Appli utilise majoritairement Bootstrap 5 (https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css) pour la mise en forme
+
 Le projet est découpé selon les dossiers suivants:
 ![image](https://user-images.githubusercontent.com/97900138/186423120-56183762-d63b-43da-81b0-139a77035cd2.png)
 
@@ -18,6 +19,7 @@ Ce dossier contient tous les fichiers de code définissant les interfaces et les
 #### Dossier Blog:
 Ce dossier contient tout les fichiers de code définissant les autres interfaces de l'Appli (page d'accueil, pages de créations de demande de critique et de rédaction,
 page de suivi des abonnements...) et leurs procédés; il contient également le dossier static, avec un fichier css et un fichier js:
+
 ![image](https://user-images.githubusercontent.com/97900138/186420525-ea1e4f19-ae36-48b9-ab3b-ba33d1058743.png)
 
 #### Dossier LITReview:
