@@ -34,4 +34,27 @@ C'est la base de données de Django
 #### Fichier manage.py:
 Ce fichier contient le script utilitaire de ligne de commande de Django
 
+## Comment installer cette Appli sur votre ordinateur:
+(i) Requis: téléchargez **Python 3.10**
+https://www.python.org/downloads/
+
+(ii)puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli
+
+(iii) créez votre environnement virtuel
+
+(iv) à l'aide des commandes du terminal, activez votre environnement virtuel 
+(si votre environnement virtuel s'appelle env):
+> Sur Windows  
+- terminal de type bash : source env/Scripts/activate
+- terminal de type shell : env\Scripts\activate
+  
+> Sur Mac ou Linux
+- source env/bin/activate
+
+(v) puis installez les packages requirements du projet à l'aide de la commande:
+pip install -r requirements.txt
+
+
+## Comment utiliser l'Appli:
+
 
