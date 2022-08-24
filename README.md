@@ -57,4 +57,10 @@ pip install -r requirements.txt
 
 ## Comment utiliser l'Appli:
 
+### Experience utilisateur:
+
+(i) avec votre terminal, positionnez vous 
+
+### Experience administrateur:
+
 
