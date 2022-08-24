@@ -5,8 +5,8 @@
 #### Architecture du Projet:
 
 Remarque: l'Appli utilise majoritairement Bootstrap 5 (https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css) pour la mise en forme
-
-![image](https://user-images.githubusercontent.com/97900138/186417341-cefad73a-8dc1-445b-943d-ed67febd9dbf.png)
+Le projet est découpé selon les dossiers suivants:
+![image](https://user-images.githubusercontent.com/97900138/186423120-56183762-d63b-43da-81b0-139a77035cd2.png)
 
 #### Dossier Authentication:
 Ce dossier contient tous les fichiers de code définissant les interfaces et les procédés de sign up et de login:
