@@ -51,7 +51,9 @@ git clone https://github.com/MargueriteEffren/OC_Projet9.git
 
 (iv) puis positionnez vous dans le dossier OC_Projet9 (cd OC_Projet9)
 
-(v) créez votre environnement virtuel
+(v) créez votre environnement virtuel, par exemple avec la commande:
+
+python3 -m venv env
 
 (vi) à l'aide des commandes du terminal, activez votre environnement virtuel 
 (si votre environnement virtuel s'appelle env):
