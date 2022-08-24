@@ -64,9 +64,21 @@ pip install -r requirements.txt
 (ii) activez l'environnement virtuel
 
 (iii) ensuite tapez la commande 
+
 $ python3 manage.py runserver
 
 pour exécuter le serveur de développement
+
+entrez dans votre navigateur l'adresse:
+
+http://127.0.0.1:8000/
+
+Vous devriez arriver sur la page de login. 
+
+Essayer de vous connecter avec l'utilisateur:
+username: toto
+password: S3cret!
+
 
 ### Experience administrateur:
 
