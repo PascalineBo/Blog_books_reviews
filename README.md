@@ -66,7 +66,7 @@ python3 -m venv env
 
 (vii) puis installez les packages requirements du projet à l'aide de la commande:
 
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 
 
 ## Comment utiliser l'Appli:
