@@ -45,7 +45,7 @@ https://www.python.org/downloads/
 
 (ii) puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli
 
-(iii) puis positionner vous dans le dossier OC_Projet9
+(iii) puis positionnez vous dans le dossier OC_Projet9 (cd OC_Projet9)
 
 (iv) créez votre environnement virtuel
 
