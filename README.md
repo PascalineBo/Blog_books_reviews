@@ -45,11 +45,15 @@ https://www.python.org/downloads/
 
 (ii) puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli
 
-(iii) puis positionnez vous dans le dossier OC_Projet9 (cd OC_Projet9)
+(iii) pour importer les fichiers de ce repository, tapez la commande git:
 
-(iv) créez votre environnement virtuel
+git clone https://github.com/MargueriteEffren/OC_Projet9.git
 
-(v) à l'aide des commandes du terminal, activez votre environnement virtuel 
+(iv) puis positionnez vous dans le dossier OC_Projet9 (cd OC_Projet9)
+
+(v) créez votre environnement virtuel
+
+(vi) à l'aide des commandes du terminal, activez votre environnement virtuel 
 (si votre environnement virtuel s'appelle env):
 > Sur Windows  
 - terminal de type bash : source env/Scripts/activate
@@ -58,7 +62,7 @@ https://www.python.org/downloads/
 > Sur Mac ou Linux
 - source env/bin/activate
 
-(vi) puis installez les packages requirements du projet à l'aide de la commande:
+(vii) puis installez les packages requirements du projet à l'aide de la commande:
 
 pip install -r requirements.txt
 
