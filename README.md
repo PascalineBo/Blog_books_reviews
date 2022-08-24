@@ -40,7 +40,7 @@ C'est la base de données de Django
 Ce fichier contient le script utilitaire de ligne de commande de Django
 
 ## Comment installer cette Appli sur votre ordinateur:
-- [ ] Requis: téléchargez **[Python 3.10](https://www.python.org/downloads/)**
+- [x] Requis: téléchargez **[Python 3.10](https://www.python.org/downloads/)**
 
 - [ ] puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli
 
