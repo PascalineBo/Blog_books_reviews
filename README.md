@@ -32,5 +32,6 @@ Ce dossier contient le fichier base.html, qui contient la partie de code html co
 Ce fichier est la base de données de l'appli
 
 #### Fichier manage.py:
-Ce fichier permet d'appeler l'utilitaire de ligne de commande de Django et est conçu spécifiquement pour fonctionner avec le projet
+Ce fichier contient le script utilitaire de ligne de commande de Django
+
 
