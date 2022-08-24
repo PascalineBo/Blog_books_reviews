@@ -81,7 +81,18 @@ username: toto
 
 password: S3cret!
 
+(v) pour arrêter l'exécution du serveur, faites Ctrl + C dans votre terminal.
+
 
 ### Experience administrateur:
+
+(i) créez un compte super utilisateur avec la commande:
+
+$ python3 manage.py createsuperuser
+
+Suivez les instructions de l'invite pour créer votre superuser. Vous n'avez pas besoin de remplir une adresse électronique, 
+mais n'oubliez pas votre mot de passe !
+
+(ii) Ensuite, exécutez le serveur de développement, et dans votre navigateur, allez sur http://127.0.0.1:8000/admin/ 
 
 
