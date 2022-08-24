@@ -2,6 +2,9 @@
 
 ## Objectif du projet: développer un produit permettant à une communauté d'utilisateurs de consulter ou de solliciter une critique de livres à la demande.
 
+#### Cahier des Charges:
+[LITReview+-+Requirements+Specification (2).docx](https://github.com/MargueriteEffren/OC_Projet9/files/9416625/LITReview%2B-%2BRequirements%2BSpecification.2.docx)
+
 #### Architecture du Projet:
 
 Remarque: l'Appli utilise majoritairement Bootstrap 5 (https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css) pour la mise en forme
