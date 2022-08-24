@@ -69,7 +69,7 @@ $ python3 manage.py runserver
 
 pour exécuter le serveur de développement
 
-entrez dans votre navigateur l'adresse:
+(iv) entrez dans votre navigateur l'adresse:
 
 http://127.0.0.1:8000/
 
