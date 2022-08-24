@@ -45,9 +45,11 @@ https://www.python.org/downloads/
 
 (ii) puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli
 
-(iii) créez votre environnement virtuel
+(iii) puis positionner vous dans le dossier OC_Projet9
 
-(iv) à l'aide des commandes du terminal, activez votre environnement virtuel 
+(iv) créez votre environnement virtuel
+
+(v) à l'aide des commandes du terminal, activez votre environnement virtuel 
 (si votre environnement virtuel s'appelle env):
 > Sur Windows  
 - terminal de type bash : source env/Scripts/activate
@@ -56,7 +58,8 @@ https://www.python.org/downloads/
 > Sur Mac ou Linux
 - source env/bin/activate
 
-(v) puis installez les packages requirements du projet à l'aide de la commande:
+(vi) puis installez les packages requirements du projet à l'aide de la commande:
+
 pip install -r requirements.txt
 
 
