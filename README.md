@@ -46,26 +46,26 @@ Ce fichier contient le script utilitaire de ligne de commande de Django
 
 (iii) pour importer les fichiers de ce repository, tapez la commande git:
 
-git clone https://github.com/MargueriteEffren/OC_Projet9.git
+`git clone https://github.com/MargueriteEffren/OC_Projet9.git`
 
 (iv) puis positionnez vous dans le dossier OC_Projet9 (cd OC_Projet9)
 
 (v) créez votre environnement virtuel, par exemple avec la commande:
 
-python3 -m venv env
+`python3 -m venv env`
 
 (vi) à l'aide des commandes du terminal, activez votre environnement virtuel 
 (si votre environnement virtuel s'appelle env):
 > Sur Windows  
-- terminal de type bash : source env/Scripts/activate
-- terminal de type shell : env\Scripts\activate
+- terminal de type bash : `source env/Scripts/activate`
+- terminal de type shell : `env\Scripts\activate`
   
 > Sur Mac ou Linux
-- source env/bin/activate
+- `source env/bin/activate`
 
 (vii) puis installez les packages requirements du projet à l'aide de la commande:
 
-$ pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 
 ## Comment utiliser l'Appli:
@@ -78,7 +78,7 @@ $ pip install -r requirements.txt
 
 (iii) ensuite tapez la commande 
 
-$ python3 manage.py runserver
+`python3 manage.py runserver`
 
 pour exécuter le serveur de développement
 
@@ -101,7 +101,7 @@ password: S3cret!
 
 (i) créez un compte super utilisateur avec la commande:
 
-$ python3 manage.py createsuperuser
+`python3 manage.py createsuperuser`
 
 Suivez les instructions de l'invite pour créer votre superuser. Vous n'avez pas besoin de remplir une adresse électronique, 
 mais n'oubliez pas votre mot de passe !
