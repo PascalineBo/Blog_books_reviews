@@ -48,7 +48,7 @@ Ce fichier contient le script utilitaire de ligne de commande de Django
 
 `git clone https://github.com/MargueriteEffren/OC_Projet9.git`
 
-(iv) puis positionnez vous dans le dossier OC_Projet9 (cd OC_Projet9)
+(iv) puis positionnez vous dans le dossier OC_Projet9 (`cd OC_Projet9`)
 
 (v) créez votre environnement virtuel, par exemple avec la commande:
 
