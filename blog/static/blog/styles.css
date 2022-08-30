@@ -1,6 +1,7 @@
 /* menu icon position */
 .icon {float: right;
-        position: absolute;}
+        position: absolute;
+        display:none;}
 
 /* color of rating stars */
  .checked {color: orange;
@@ -48,7 +49,9 @@
     font-size: 12pt;
     }
     .btn.btn-secondary.btn-sm{
-    margin-right: 1px}
+    margin-right: 1px;
+    font-size: 0.7em;
+    }
 
     .m-3.btn.btn-secondary.btn-md{
     width: 6em;}

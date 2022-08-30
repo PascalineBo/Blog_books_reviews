@@ -9,28 +9,29 @@
             role="button" aria-disabled="true">Créer une critique</a>
         </li>
     </ul>
-    {% for ticket in tickets %}
+    {% for post in posts %}
+        {% if post.content_type == 'TICKET' %}
             <div class="container border border-dark w-50">
                 <div class="row">
                     <div class="col-9 text-left">
-                        <a href="{% url 'view_ticket' ticket.id %}">
+                        <a href="{% url 'view_ticket' post.id %}">
                             <p>Vous avez demandé une critique:</p>
                         </a>
                     </div>
                     <div class="col-3 text-right">
-                        <p>{{ ticket.time_created }}</p>
+                        <p>{{ post.time_created }}</p>
                     </div>
                 </div>
-                <h4>Titre :{{ ticket.title }}</h4>
-                {% if ticket.image %}
-                    <img src="{{ ticket.image.url }}" alt="book cover">
+                <h4>Titre :{{ post.title }}</h4>
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="book cover">
                 {% endif %}
                 <div class="row">
-                    <a href="{% url 'edit_ticket' ticket.id %}"
+                    <a href="{% url 'edit_ticket' post.id %}"
                     class = "m-3 btn btn-secondary btn-md col-lg-3 col-sm-4">
                     Modifier
                     </a>
-                    <a href="{% url 'edit_ticket' ticket.id %}"
+                    <a href="{% url 'edit_ticket' post.id %}"
                        class = "m-3 btn btn-secondary btn-md col-lg-3 col-sm-4">
                     Supprimer
                     </a>
@@ -39,41 +40,39 @@
                     </a>
                 </div>
             </div>
-    {% endfor %}
-
-    {% for review in reviews %}
+        {% elif post.content_type == 'REVIEW' %}
             <div class="container border border-dark w-50">
                 <div class="row">
                     <div class="col-9 text-left">
-                        <a href="{% url 'view_review' review.id %}">
+                        <a href="{% url 'view_review' post.id %}">
                             <span>Vous avez posté une critique </span>
                         </a>
                     </div>
                     <div class="col-3 text-right">
-                        <span>{{review.time_created}}</span>
+                        <span>{{post.time_created}}</span>
                     </div>
                 </div>
-                <h5>{{ review.headline }} -
-                 {% range_rating review.rating as rating %}
+                <h5>{{ post.headline }} -
+                 {% range_rating post.rating as rating %}
                         {% for star in rating %}
                     <span class="fa fa-star checked"></span>
                         {% endfor %}
                 </h5>
-                <p>{{ review.content }}</p>
-                <p>{{ review.body }}</p>
-                <p>{{ review.ticket}}</p>
+                <p>{{ post.content }}</p>
+                <p>{{ post.body }}</p>
+                <p>{{ post.ticket}}</p>
                 <div class="container border border-dark">
-                    <h3>Demande de critique : {{ review.ticket.title }}</h3>
-                    <p>de: {{ review.ticket.user }} </p>
-                    {% if review.ticket.image %}
-                    <img src="{{ review.ticket.image.url }}" alt="book cover">
+                    <h3>Demande de critique : {{ post.ticket.title }}</h3>
+                    <p>de: {{ post.ticket.user }} </p>
+                    {% if post.ticket.image %}
+                    <img src="{{ post.ticket.image.url }}" alt="book cover">
                     {% endif %}
                 </div>
                 <div class="row">
-               <a href="{% url 'edit_review' review.id %}" class = "m-3 btn btn-secondary btn-md col-3">
+               <a href="{% url 'edit_review' post.id %}" class = "m-3 btn btn-secondary btn-md col-3">
                     Modifier
                </a>
-               <a href="{% url 'edit_review' review.id %}" class = "m-3 btn btn-secondary btn-md col-3">
+               <a href="{% url 'edit_review' post.id %}" class = "m-3 btn btn-secondary btn-md col-3">
                     Supprimer
                </a>
                 <a href="{% url 'home' %}" class = "m-3 btn btn-secondary btn-md col-3">
@@ -81,5 +80,6 @@
                 </a>
                 </div>
             </div>
+        {% endif %}
     {% endfor %}
 {% endblock content %}

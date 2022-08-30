@@ -7,6 +7,8 @@ from authentication.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.template.defaulttags import register
+from django.db.models import CharField, Value
+from itertools import chain
 
 
 @login_required
@@ -14,6 +16,8 @@ def home(request):
     users = [u.followed_user for u in models.UserFollows.objects.filter(user=request.user)]
     users.append(request.user)
     reviews = models.Review.objects.filter(user__in=users)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
     reviews_ticket_id = []
     for r in reviews:
         if r.ticket is None:  # cas d'une critique spontanée sans ticket
@@ -23,28 +27,44 @@ def home(request):
     try:
         tickets_with_review = models.Ticket.objects.filter(
             Q(user__in=users) & Q(id__in=reviews_ticket_id))
+        tickets_with_review = tickets_with_review.annotate(
+            content_type=Value('TICKET_W_REVIEW', CharField()))
     except UnboundLocalError:  # cas d'un nouvel utilisateur qui n'a encore ni abonné ni ticket
         tickets_with_review = []
     try:
         tickets = models.Ticket.objects.filter(user__in=users).exclude(
             id__in=tickets_with_review)
+        tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     except UnboundLocalError:  # cas d'un nouvel utilisateur qui n'a encore ni abonné ni ticket
         tickets = []
     except ValueError:  # cas d'un nouvel utilisateur qui n'a encore ni abonné ni ticket
         tickets = []
 
-    return render(request, 'blog/home.html', context={'tickets': tickets,
-                                                      'reviews': reviews,
-                                                      'tickets_with_review': tickets_with_review
-                                                      })
+    # combine and sort the three types of posts
+    posts = sorted(
+        chain(reviews, tickets, tickets_with_review),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+
+    return render(request, 'blog/home.html', context={'posts': posts})
 
 
 @login_required
 def posts(request):
     tickets = models.Ticket.objects.filter(user=request.user)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = models.Review.objects.filter(user=request.user)
-    return render(request, 'blog/posts.html', context={'tickets': tickets,
-                                                       'reviews': reviews})
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+    # combine and sort the two types of posts
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+
+    return render(request, 'blog/posts.html', context={'posts': posts,})
 
 
 @login_required
