@@ -64,7 +64,7 @@ def posts(request):
         reverse=True
     )
 
-    return render(request, 'blog/posts.html', context={'posts': posts,})
+    return render(request, 'blog/posts.html', context={'posts': posts})
 
 
 @login_required
