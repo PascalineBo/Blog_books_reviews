@@ -1,4 +1,4 @@
-# **OC_Projet9: Développez une application Web en utilisant Django**
+# **Blog de critiques de livres: Développer une application Web en utilisant Django**
 
 ## Objectif du projet: développer un produit permettant à une communauté d'utilisateurs de consulter ou de solliciter une critique de livres à la demande.
 
