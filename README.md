@@ -40,49 +40,50 @@ C'est la base de données de Django
 Ce fichier contient le script utilitaire de ligne de commande de Django
 
 ## Comment installer cette Appli sur votre ordinateur:
-(i) Requis: téléchargez **[Python 3.10](https://www.python.org/downloads/)**
+Requis: téléchargez **[Python 3.10](https://www.python.org/downloads/)**
+<ol>
 
-(ii) puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli
+<li> puis, avec les commandes du terminal, positionnez-vous sur le dossier dans lequel vous souhaitez installer l'Appli</li>
 
-(iii) pour importer les fichiers de ce repository, tapez la commande git:
+<li>pour importer les fichiers de ce repository, tapez la commande git:
 
-`git clone https://github.com/MargueriteEffren/OC_Projet9.git`
+`git clone https://github.com/PascalineBo/Blog_books_reviews.git`</li>
 
-(iv) puis positionnez vous dans le dossier OC_Projet9 (`cd OC_Projet9`)
+<li> puis positionnez vous dans le dossier OC_Projet9 (`cd OC_Projet9`)</li>
 
-(v) créez votre environnement virtuel, par exemple avec la commande:
+<li> créez votre environnement virtuel, par exemple avec la commande:
 
-`python3 -m venv env`
+`python3 -m venv env`</li>
 
-(vi) à l'aide des commandes du terminal, activez votre environnement virtuel 
+<li> à l'aide des commandes du terminal, activez votre environnement virtuel 
 (si votre environnement virtuel s'appelle env):
 > Sur Windows  
 - terminal de type bash : `source env/Scripts/activate`
 - terminal de type shell : `env\Scripts\activate`
   
 > Sur Mac ou Linux
-- `source env/bin/activate`
+- `source env/bin/activate`</li>
 
-(vii) puis installez les packages requirements du projet à l'aide de la commande:
+<li> puis installez les packages requirements du projet à l'aide de la commande:
 
-`pip install -r requirements.txt`
-
+`pip install -r requirements.txt`</li>
+</ol>
 
 ## Comment utiliser l'Appli:
 
 ### Experience utilisateur:
+<ol>
+<li>  avec votre terminal, positionnez vous dans le dossier dans lequel vous avez installé l'Appli</li>
 
-(i) avec votre terminal, positionnez vous dans le dossier dans lequel vous avez installé l'Appli
+<li>  activez l'environnement virtuel</li>
 
-(ii) activez l'environnement virtuel
-
-(iii) ensuite tapez la commande 
+<li>  ensuite tapez la commande 
 
 `python3 manage.py runserver`
 
-pour exécuter le serveur de développement
+pour exécuter le serveur de développement</li>
 
-(iv) entrez dans votre navigateur l'adresse:
+<li>  entrez dans votre navigateur l'adresse:
 
 http://127.0.0.1:8000/
 
@@ -92,20 +93,20 @@ Essayer de vous connecter avec l'utilisateur:
 
 username: toto
 
-password: S3cret!
+password: S3cret!</li>
 
-(v) pour arrêter l'exécution du serveur, faites Ctrl + C dans votre terminal.
-
+<li>  pour arrêter l'exécution du serveur, faites Ctrl + C dans votre terminal.</li>
+</ol>
 
 ### Experience administrateur:
+<ol>
+<li>  créez un compte super utilisateur avec la commande:
 
-(i) créez un compte super utilisateur avec la commande:
-
-`python3 manage.py createsuperuser`
+`python3 manage.py createsuperuser`</li>
 
 Suivez les instructions de l'invite pour créer votre superuser. Vous n'avez pas besoin de remplir une adresse électronique, 
 mais n'oubliez pas votre mot de passe !
 
-(ii) Ensuite, exécutez le serveur de développement, et dans votre navigateur, allez sur http://127.0.0.1:8000/admin/ 
-
+</li> Ensuite, exécutez le serveur de développement, et dans votre navigateur, allez sur http://127.0.0.1:8000/admin/ </li>
+</ol>
 
